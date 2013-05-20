@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+	<head>
+			<title>{Title}</title>
+			<link rel="shortcut icon" href="{Favicon}">
+			<link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}">
+			<link rel="stylesheet" type="text/css" href="http://colonelalexi.cz.cc/projects/tzeentch-theme/style.css">
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	</head>
+	<body>
+		<div id="nav">
+			<ul>
+				<li><a href="/" class="round">Home</a></li>
+				{block:HasPages}{block:Pages}<li><a href="{URL}" class="round">{Label}</a></li>{/block:Pages}{/block:HasPages}
+				{block:AskEnabled}<li><a href="/ask" class="round">Askbockz</a></li>{/block:AskEnabled}
+				{block:SubmissionsEnabled}<li><a href="/submit" class="round" id="last">Submit Shit</a></li>{/block:SubmissionsEnabled}
+				{block:PreviousPage}<li><a href="{PreviousPage}">&lt;&lt;</a></li>{/block:PreviousPage}
+				{block:Pagination}{block:NextPage}<li><a href="{NextPage}">&gt;&gt;</a></li>{/block:NextPage}{/block:Pagination}
+			</ul>
+		</div><!-- /#nav -->
+		<div id="posts">
+			<h1><a href="/">{Title}</a></h1>
+			<ul id="the_posts">{block:Posts}
+				<li class="post {block:Quote}quote-post{/block:Quote}">
+					<h2 class="post-title"><a href="{Permalink}">
+						{block:Text}{Title}{/block:Text}
+						{block:Photo}Photo{/block:Photo}
+						{block:Photoset}Photoset{/block:Photoset}
+						{block:Panorama}Panorama{/block:Panorama}
+						{block:Quote}Quote{/block:Quote}
+						{block:Link}Link{/block:Link}
+						{block:Chat}Chat{/block:Chat}
+						{block:Video}Video{/block:Video}
+						{block:Audio}Audio{/block:Audio}
+						{block:Answer}Answer{/block:Answer}
+					</a></h2>
+					<div class="post-body clear">
+						{block:Text}{Body}{/block:Text}
+						{block:Photo}
+							<img src="{PhotoURL-500}" alt="{PhotoAlt}">
+							{block:Caption}
+								<div class="caption">{Caption}</div><!-- /div.caption -->
+							{/block:Caption}
+						{/block:Photo}
+						{block:Photoset}
+							{Photoset-500}
+							{block:Caption}
+								<div class="caption">{Caption}</div><!-- /div.caption -->
+							{/block:Caption}
+						{/block:Photoset}
+						{block:Panorama}
+							{LinkOpenTag}
+								<img src="{PhotoURL-500}" alt="{PhotoAlt}">
+							{LinkCloseTag}
+							{block:Caption}
+								<div class="caption">{Caption}</div><!-- /div.caption -->
+							{/block:Caption}
+						{/block:Panorama}
+						{block:Quote}
+							<blockquote class="quote">{Quote}</blockquote>
+							{block:Source}
+								<div class="caption">{Source}</div><!-- /div.caption -->
+								<div class="clear"></div>
+							{/block:Source}					
+						{/block:Quote}
+						{block:Link}
+							<h3>&gt;&gt;&nbsp;<a href="{URL}" {Target}>{Name}</a></h3>
+							{block:Description}
+								<div class="caption">{Description}</div><!-- /div.caption -->
+							{/block:Description}
+						{/block:Link}
+						{block:Chat}
+							<ul class="chat">
+								{block:Lines}
+									<li class="{Alt}">
+										{block:Label}<strong>{Label}:</strong>{/block:Label} {Line}
+									</li>
+								{/block:Lines}
+							</ul><!-- /ul.chat -->
+						{/block:Chat}
+						{block:Video}
+							{Video-500}
+							{block:Caption}
+								<div class="caption">{Caption}</div><!-- /div.caption -->
+							{/block:Caption}
+						{/block:Video}
+						{block:Audio}
+							{AudioPlayerBlack}
+							{block:Caption}
+								<div class="caption">{Caption}</div><!-- /div.caption -->
+							{/block:Caption}
+						{/block:Audio}
+						{block:Answer}
+							<div class="question">
+								<p>{Question}</p>
+								<div class="asker">{Asker}&nbsp;&nbsp;&nbsp;<img src="{AskerPortraitURL-30}" alt="{Asker}"></div>
+							</div>
+							<div class="caption">{Answer}</div><!-- /div.caption -->
+						{/block:Answer}
+					</div><!-- /div.post-body -->
+					<div class="post-meta clear">
+						{block:HasTags}
+							<h5>{block:Tags}<a href="{TagURL}">#{Tag}</a>,&nbsp;{/block:Tags}</h5>
+						{/block:HasTags}
+						{block:Date}<h5>{block:Text}<a href="{Permalink}">Text</a>&nbsp;{/block:Text}posted {TimeAgo} on the {DayOfMonth}{DayOfMonthSuffix} of {Month}, {Year} at {12Hour}{AmPm}</h5>{/block:Date}
+						{block:RebloggedFrom}
+							<h5>Reblogged from {ReblogParentName} (<a href="{ReblogParentURL}">{ReblogParentTitle}</a>), originally posted by {ReblogRootName} (<a href="{ReblogRootURL}">{ReblogRootTitle}</a>)</h5>
+						{/block:RebloggedFrom}
+						{block:ContentSource}
+							<a href="{SourceURL}">
+								{lang:Source}:
+								{block:SourceLogo}
+									<img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}">
+								{/block:SourceLogo}
+								{block:NoSourceLogo}
+									{SourceTitle}
+								{/block:NoSourceLogo}
+							</a>
+						{/block:ContentSource}
+						{block:NoteCount}
+							<h5>with <a href="{Permalink}">{NoteCountWithLabel}</a></h5>
+						{/block:NoteCount}
+						{block:PostNotes}{PostNotes-16}{/block:PostNotes}
+					</div><!-- /div.post-meta -->
+				</li><!-- /li.post -->
+			{/block:Posts}</ul><!-- /ul#the_posts -->
+		</div><!-- /#posts -->
+		<div id="info">
+			<h3>About Me</h3>
+			<p>{Description}</p>
+		</div><!-- /#info -->
+		<div id="pic">
+			<a href="/"><img src="{PortraitURL-128}" height="200px" width="200px" alt="{Title}"></a>
+		</div><!-- /#pic -->
+	</body>
+</html>
